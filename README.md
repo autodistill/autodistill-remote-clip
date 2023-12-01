@@ -26,7 +26,7 @@ Read the [RemoteCLIP Autodistill documentation](https://autodistill.github.io/au
 To use RemoteCLIP with autodistill, you need to install the following dependency:
 
 ```bash
-pip3 install autodistill-clip
+pip3 install autodistill-remote-clip
 ```
 
 ## Quickstart
