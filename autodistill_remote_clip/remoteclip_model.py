@@ -6,10 +6,11 @@ import torch
 import supervision as sv
 from autodistill.detection import CaptionOntology, DetectionBaseModel
 from huggingface_hub import hf_hub_download
+from autodistill.helpers import load_image
 import open_clip
 import numpy as np
 
-from PIL import Image
+from typing import Any
 
 HOME = os.path.expanduser("~")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -36,11 +37,14 @@ class RemoteCLIP(DetectionBaseModel):
 
         self.model = model.eval().to(DEVICE)
 
-    def predict(self, input: str, confidence: int = 0.5) -> sv.Detections:
+    def predict(self, input: Any, confidence: int = 0.5) -> sv.Detections:
         prompts = self.ontology.prompts()
 
         text = self.tokenizer(prompts)
-        image = self.preprocess(Image.open(input)).unsqueeze(0)
+
+        image = load_image(input, return_format="PIL")
+
+        image = self.preprocess(image).unsqueeze(0)
 
         with torch.no_grad(), torch.cuda.amp.autocast():
             image_features = self.model.encode_image(image)
