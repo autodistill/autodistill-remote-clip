@@ -56,7 +56,7 @@ print(predictions)
 
 ## License
 
-This Autodistill module is licensed under an MIT license. At the time of publishing this project, the RemoteCLIP model and weights had no attached license. Refer to the [RemoteCLIP repository](https://github.com/ChenDelong1999/RemoteCLIP) for the most up-to-date licensing information regarding the model.
+This project is covered under an [Apache 2.0 license](https://github.com/ChenDelong1999/RemoteCLIP/blob/main/LICENSE).
 
 ## 🏆 Contributing
 
